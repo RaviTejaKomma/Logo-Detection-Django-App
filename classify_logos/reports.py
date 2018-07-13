@@ -1,6 +1,7 @@
 import numpy as np
 from keras.preprocessing import image
 from LogoClassification import settings as sett
+import os
 
 
 def predict_image(path):
@@ -10,6 +11,9 @@ def predict_image(path):
 
     with sett.graph.as_default():
         result = sett.model.predict(test_image)
+
+    if os.path.exists(path):
+        os.remove(path)
 
     if result[0][0] == 0:
        prediction = 'Image contains Apple Logo'
