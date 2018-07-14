@@ -5,30 +5,70 @@
     <meta charset="UTF-8">
     <title>index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <style>
+        div.polaroid {
+              width: 450px;
+              background-color: white;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              margin-bottom: 25px;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 4px;
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
+    </style>
+
 </head>
 <body>
     <div class="page-header">
         <h1 style="text-align: center">Predict the Logo</h1>
+       <hr>
+        <p style="text-align: center">Upload an <b>image file</b> and submit. I will tell you whether it contains <b>Apple</b> logo or not.</p>
+          <div style="text-align: center" >
+                    <b id="predictions"> {{ msg }} </b>
+          </div>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <div  class="col-md-6">
-                    <form method="POST" action="{% url 'upload_image' %}" enctype="multipart/form-data">
-                        <input type="file" name="filename" id="file_upload"> <br>
-                        <button type="submit" class="btn btn-primary btn-md">Submit</button>
-                    </form>
+    <center>
+        <div class="container polaroid">
+            <div class="mdl-grid">
+                    <img id="img-preview" src="#" alt="" height="200" width="200">
             </div>
-            <div class="col-md-6">
-                 {{ msg }}
+            <div class="mdl-grid">
+                <div  class="mdl-cell mdl-cell--12-col">
+                        <form  method="POST" action="{% url 'upload_image' %}" enctype="multipart/form-data">
+                            <input type="file" name="filename" id="file_upload" onclick="clear_predictions()">
+                            <button type="submit" class="btn btn-primary btn-md" id="submit_button" onclick="return check_upload()">Submit</button>
+                        </form>
+                </div>
             </div>
         </div>
-    </div>
+    </center>
+
 
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
+
+    <script>
+        function clear_predictions(){
+            $("#predictions").empty();
+        }
+
+        function check_upload(){
+             if($('#file_upload').val() === "")
+                {
+                    alert('Upload the image and then submit');
+                    event.preventDefault();
+                }
+        }
+    </script>
 </body>
 </html>
