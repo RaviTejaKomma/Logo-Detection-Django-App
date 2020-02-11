@@ -1,7 +1,7 @@
 Bottleneck==1.2.1
 Cython==0.28.2
 cytoolz==0.9.0.1
-Django==2.0.7
+Django==2.2.10
 docutils==0.14
 entrypoints==0.2.3
 gunicorn==19.9.0
