@@ -37,7 +37,7 @@ scikit-learn==0.19.1
 scipy==1.1.0
 spyder==3.2.8
 tensorboard==1.8.0
-tensorflow==1.8.0
+tensorflow==2.7.2
 termcolor==1.1.0
 terminado==0.8.1
 testpath==0.3.1
